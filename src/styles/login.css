@@ -1,0 +1,183 @@
+/* --- CONFIGURACIÓN BASE --- */
+.login-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f7f6;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.login-container {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.2), 0 10px 10px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+    max-width: 1000px; /* Tamaño grande corregido */
+    width: 90%;
+    min-height: 550px;
+}
+
+/* --- FORMULARIOS --- */
+.form-container form {
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+}
+
+.login-container h2 {
+    color: #dc2626; /* Rojo original */
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.input-group input {
+    background-color: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    padding: 14px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+/* --- BOTONES ROJOS --- */
+.btn-primary {
+    border-radius: 8px;
+    background-color: #dc2626; /* Rojo original */
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 15px 45px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    margin-top: 15px;
+    transition: transform 80ms ease-in;
+}
+
+.btn-primary:active {
+    transform: scale(0.95);
+}
+
+.btn-outline {
+    border-radius: 8px;
+    border: 2px solid #FFFFFF;
+    background-color: transparent;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 12px 30px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+/* --- LÓGICA DE ANIMACIÓN --- */
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.sign-up-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+/* Movimiento cuando está activo */
+.login-container.active .sign-in-container {
+    transform: translateX(100%);
+}
+
+.login-container.active .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
+}
+
+@keyframes show {
+    0%, 49.99% { opacity: 0; z-index: 1; }
+    50%, 100% { opacity: 1; z-index: 5; }
+}
+
+/* --- PANEL OVERLAY ROJO --- */
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+
+.login-container.active .overlay-container {
+    transform: translateX(-100%);
+}
+
+.overlay {
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); /* Degradado Rojo */
+    color: #FFFFFF;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.login-container.active .overlay {
+    transform: translateX(50%);
+}
+
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+    transform: translateX(-20%);
+}
+
+.login-container.active .overlay-left {
+    transform: translateX(0);
+}
+
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.login-container.active .overlay-right {
+    transform: translateX(20%);
+}
